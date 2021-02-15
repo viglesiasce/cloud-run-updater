@@ -1,0 +1,17 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: cs-redirector
+spec:
+  template:
+    spec:
+      containerConcurrency: 80
+      containers:
+      - image: gcr.io/vicnastea/cs-redirector:something
+        ports:
+        - containerPort: 8080
+          name: http1
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi

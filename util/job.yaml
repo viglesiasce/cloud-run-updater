@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: update-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: gcloud
+        image: gcr.io/vicnastea/cs-redirector-update
+        command:
+        - /update-service.sh 
+      - name: app
+        image: gcr.io/vicnastea/cs-redirector
+      restartPolicy: Never
+  backoffLimit: 11
